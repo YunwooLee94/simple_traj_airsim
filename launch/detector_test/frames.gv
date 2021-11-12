@@ -1,0 +1,14 @@
+digraph G {
+"world_ned" -> "Drone1"[label="Broadcaster: /airsim_node\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1636373845.259 sec old)\nBuffer length: 0.000 sec\n"];
+"Drone1/odom_local_ned" -> "front_rgb_camera_body/static"[label="Broadcaster: /airsim_node\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1636373845.259 sec old)\nBuffer length: 0.000 sec\n"];
+"Drone1" -> "Drone1/odom_local_ned"[label="Broadcaster: /airsim_node\nAverage rate: 114.159 Hz\nMost recent transform: 1636373842.142 ( 3.117 sec old)\nBuffer length: 4.371 sec\n"];
+"Drone1/odom_local_ned" -> "front_rgb_camera_optical/static"[label="Broadcaster: /airsim_node\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1636373845.259 sec old)\nBuffer length: 0.000 sec\n"];
+"Drone1/odom_local_ned" -> "Drone1/LidarCustom"[label="Broadcaster: /airsim_node\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1636373845.259 sec old)\nBuffer length: 0.000 sec\n"];
+"Drone1" -> "world_enu"[label="Broadcaster: /Drone_to_enu_pub\nAverage rate: 20.366 Hz\nMost recent transform: 1636373845.339 ( -0.080 sec old)\nBuffer length: 4.910 sec\n"];
+"Drone1" -> "front_rgb_camera_body"[label="Broadcaster: /airsim_node\nAverage rate: 7.225 Hz\nMost recent transform: 1636373841.974 ( 3.285 sec old)\nBuffer length: 4.152 sec\n"];
+"Drone1" -> "front_rgb_camera_optical"[label="Broadcaster: /airsim_node\nAverage rate: 7.225 Hz\nMost recent transform: 1636373841.974 ( 3.285 sec old)\nBuffer length: 4.152 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1636373845.259"[ shape=plaintext ] ;
+ }->"world_ned";
+}

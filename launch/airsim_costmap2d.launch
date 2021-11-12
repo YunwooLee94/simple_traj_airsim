@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name ="pcl_topic_" value= "/airsim_node/Drone1/lidar/LidarCustom"/>
+    <arg name="occu_frame_id_" value="world_enu"/>
+    <arg name="world_frame_id_" value="world_enu"/>
+    <arg name="vehicle_name_" value="Drone1"/>
+    <arg name="scan_topic" value= "/scan"/>
+    <arg name="lidar_frame_id_" value="world_enu"/>
+
+    <node name="simple_goal_publisher_drone_key1" pkg="simple_traj_airsim" type="teleop_drone" output="screen">
+        <param name="vehicle_name" value="$(arg vehicle_name_)"/>
+        <param name="world_frame_id" value="$(arg world_frame_id_)"/>
+    </node>
+
+
+    <!--node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+
+        <remap from="cloud_in" to="$(arg pcl_topic_)"/>
+        <remap from="scan" to="$(arg scan_topic)"/>
+        <rosparam>
+            target_frame: "world_enu" # Leave disabled to output scan in pointcloud frame
+            transform_tolerance: 0.01
+            min_height: -1.5
+            max_height: 2.5
+
+            angle_min: -2.1408 # -M_PI/2
+            angle_max: 2.1408 # M_PI/2
+            angle_increment: 0.027 # M_PI/360.0
+            scan_time: 0.33
+            range_min: 0.0
+            range_max: 100.0
+            use_inf: true
+            inf_epsilon: 100.0
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 2
+        </rosparam>
+    </node-->
+
+    <!--include file = "$(find simple_traj_airsim)/launch/occupancy2d/costmap_2d.launch">
+        <arg name = "rviz" value = "false"/>
+        <arg name = "occupancy_frame_id" value = "$(arg occu_frame_id_)"/>
+        <arg name = "lidar_frame_id" value = "$(arg lidar_frame_id_)"/>
+        <arg name = "scan_topic" value = "$(arg scan_topic)"/>
+        <arg name = "cost_map_min_z" value = "-1.5"/>
+        <arg name = "cost_map_max_z" value = "2.5"/>
+    </include-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find simple_traj_airsim)/launch/rviz/temp.rviz" output="log" />
+</launch>
